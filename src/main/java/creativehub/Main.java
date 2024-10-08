@@ -28,7 +28,11 @@ public class Main {
                 .body("token_type", equalTo("bearer")).extract().response().asString();
 
         JsonPath js = new JsonPath(response);
-        System.out.println(js.getString("access_token"));
+        String accessToken = js.getString("access_token");
+        String refreshToken = js.getString("refresh_token");
+
+        given().log().all().header("Authorization", "Bearer " + refreshToken)
+                .when().post("ch/v1/auth/refresh/").then().assertThat().statusCode(200);
 
     }
 
