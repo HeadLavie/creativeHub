@@ -1,11 +1,25 @@
 package files;
 
-public class ValueHelper {
+import com.github.javafaker.Faker;
+
+public class User {
+
+    public User(String password) {
+
+        Faker faker = new Faker();
+
+        this.first_name = faker.name().firstName();
+        this.second_name = faker.name().lastName();
+        this.email = faker.internet().emailAddress();
+        this.password = password;
+    }
 
     private String first_name;
     private String second_name;
     private String email;
     private String password;
+
+
 
     public String getFirst_name() {
         return first_name;

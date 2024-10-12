@@ -1,7 +1,5 @@
-package creativehub;
-
 import com.google.gson.Gson;
-import files.ValueHelper;
+import files.User;
 import files.Body;
 
 import java.net.URI;
@@ -12,7 +10,7 @@ import static groovy.json.JsonOutput.toJson;
 public class RestApi {
     public static void main(String[] args) throws Exception {
 
-        ValueHelper valueHelper = new ValueHelper();
+        User valueHelper = new User("");
         valueHelper.setFirst_name("Nick");
         valueHelper.setSecond_name("Petrov");
         valueHelper.setEmail("petrov@gmail.com");
@@ -27,7 +25,8 @@ public class RestApi {
                 .uri(new URI("https://creativehub.dev.iamrobot.xyz"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(Body.addBody())
-                        .build();
+ //                       .build();
 
     }
 }
+
