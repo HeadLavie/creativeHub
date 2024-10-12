@@ -1,6 +1,6 @@
 package files;
 
-public class body {
+public class Body {
 
     public static String addBody() {
 

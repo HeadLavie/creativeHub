@@ -1,11 +1,12 @@
 import org.junit.jupiter.api.Test;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-class Test1 {
+class SampleTest {
 
     @Test
-    void ShouldPostUser() {
+    void shouldPostUser() {
 
         given().baseUri("https://creativehub.dev.iamrobot.xyz")
                 .header("Content-Type","application/json")
@@ -16,20 +17,18 @@ class Test1 {
                         "  \"password\": \"11112222\"\n" +
                         "}").when().post("ch/v1/user/")
                 .then().log().all().statusCode(400);
-
     }
 
     @Test
-    void ShouldGetUser() {
+    void shouldGetUser() {
 
         given().baseUri("https://creativehub.dev.iamrobot.xyz/ch/v1/user")
                 .when().get("95e94649-fc22-400d-aadd-8fb2ba43f489/")
                 .then().statusCode(200).contentType("application/json");
-
     }
 
     @Test
-    void ShouldAuthUser() {
+    void shouldAuthUser() {
 
         given().header("Content-Type", "application/json").baseUri("https://creativehub.dev.iamrobot.xyz").body("{\n" +
                         "  \"email\": \"lala@google.com\",\n" +
@@ -37,6 +36,5 @@ class Test1 {
                         "}")
                 .when().post("ch/v1/auth/login/")
                 .then().statusCode(200).body("token_type", equalTo("bearer"));
-
     }
 }
