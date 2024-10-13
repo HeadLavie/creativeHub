@@ -4,6 +4,11 @@ import com.github.javafaker.Faker;
 
 public class User {
 
+    private String first_name;
+    private String second_name;
+    private String email;
+    private String password;
+
     public User(String password) {
 
         Faker faker = new Faker();
@@ -13,13 +18,6 @@ public class User {
         this.email = faker.internet().emailAddress();
         this.password = password;
     }
-
-    private String first_name;
-    private String second_name;
-    private String email;
-    private String password;
-
-
 
     public String getFirst_name() {
         return first_name;
@@ -52,5 +50,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+
 
 }

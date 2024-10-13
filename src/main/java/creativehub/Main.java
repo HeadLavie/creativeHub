@@ -15,14 +15,16 @@ public class Main {
     public static void main(String[] args) {
 
         Header applicationJsonHeader = new Header("Content-Type", "application/json");
-        User user = new User("11112222");
+        var user = new User("11112222");
+        // можно ли тут var вместо User?
+        // хочу генератор пароля
         System.out.println(user.getEmail());
 
         RestAssured.baseURI = "https://creativehub.dev.iamrobot.xyz";
         given().header(applicationJsonHeader).body(user)
                 .when().post("ch/v1/user/")
                 .then().log().all().assertThat().statusCode(201).extract().response().as(UserResponse.class);
-        // сюда сложить все поля ответа в новый класс
+        // можно ли сделать один класс из User and UserResponse
         // извлечь данные и создать новый объект в котором одно из полей будет id или как вариант сохранить id в переменную
 
         String userID = UserResponse.uid;
@@ -49,6 +51,7 @@ public class Main {
                 .when().post("ch/v1/auth/refresh/").then().assertThat().statusCode(200);
         // извлечь обновленный токен и проверить что он не равен с начальным
         // сделать все ввиде тестов
+
 
     }
 }
