@@ -47,11 +47,14 @@ public class Main {
 
         Header tokenHeader = new Header("Authorization", "Bearer " + refreshToken);
 
-        given().log().all().header(tokenHeader)
-                .when().post("ch/v1/auth/refresh/").then().assertThat().statusCode(200);
+        given().header(tokenHeader)
+                .when().post("ch/v1/auth/refresh/").then().assertThat()
+                .statusCode(200).body(accessToken, not(equalTo("access_token")));
         // извлечь обновленный токен и проверить что он не равен с начальным
         // сделать все ввиде тестов
 
+        given().header("Authorization", "Bearer " + accessToken).when().delete("ch/v1/user/").then()
+                .assertThat().statusCode(204);
 
     }
 }
