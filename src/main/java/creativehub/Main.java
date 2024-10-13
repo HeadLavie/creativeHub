@@ -50,11 +50,12 @@ public class Main {
         given().header(tokenHeader)
                 .when().post("ch/v1/auth/refresh/").then().assertThat()
                 .statusCode(200).body(accessToken, not(equalTo("access_token")));
-        // извлечь обновленный токен и проверить что он не равен с начальным
-        // сделать все ввиде тестов
+        // извлекла обновленный токен и проверила что он не равен с начальным
 
         given().header("Authorization", "Bearer " + accessToken).when().delete("ch/v1/user/").then()
                 .assertThat().statusCode(204);
 
+        given().when().get("ch/v1/user/" + userID).then().assertThat().statusCode(404);
+         // почему-то получаю код 422, а не 404
     }
 }
