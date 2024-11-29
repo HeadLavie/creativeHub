@@ -9,4 +9,5 @@ public class UserResponse {
     public static String username;
     public static String photo;
     public static String last_visited_at;
+
 }

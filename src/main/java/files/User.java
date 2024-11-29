@@ -9,15 +9,16 @@ public class User {
     private String email;
     private String password;
 
-    public User(String password) {
+    public User() {
 
         Faker faker = new Faker();
 
         this.first_name = faker.name().firstName();
         this.second_name = faker.name().lastName();
         this.email = faker.internet().emailAddress();
-        this.password = password;
+        this.password = "11112222";
     }
+
 
     public String getFirst_name() {
         return first_name;
